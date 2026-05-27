@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Plugin: Image Checker
  * @link https://github.com/torvista/Zen_Cart-Image_Checker
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @updated 18 November 2025 torvista
+ * @version 27 May 2026 torvista
  */
 
 /** directives for phpStorm code inspector
@@ -173,11 +173,12 @@ if ($process) {
 
     $error_count = 0;
     //add $results_info['image_status'] and $results_info['error'] into array
-   //debugging
+    //debugging
     $display_time = false;
-   if ($display_time) $time_start = microtime(true);
+    if ($display_time) {
+        $time_start = microtime(true);
+    }
     foreach ($results_info as $key => $value) {
-
 //$results_info['image_status']
 //0 - file exists and is good
 //1 - no file defined
@@ -247,7 +248,7 @@ if ($process) {
     }
     if ($display_time) {
         $time_end = microtime(true);
-        $messageStack->add('query time = ' . $time_end-$time_start . ' msec', 'success');
+        $messageStack->add('query time = ' . $time_end - $time_start . ' msec', 'success');
     }
 }
 ?>
@@ -268,7 +269,7 @@ require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- body //-->
 <div id="body">
     <div><h1><?= HEADING_TITLE ?></h1>
-        <p><?= HEADER_TITLE_VERSION . ': ' . IMAGE_CHECKER_VERSION ?></p>
+        <p>v<?= IMAGE_CHECKER_VERSION ?></p>
         <?= TEXT_IMAGES_DIRECTORY ?>
         <?php
         if ($limit_search > 0) { ?>
@@ -276,6 +277,7 @@ require(DIR_WS_INCLUDES . 'header.php'); ?>
             <?php
         } ?>
     </div>
+    <br>
     <div>
         <?= TEXT_INTRO ?>
         <?= zen_draw_form('options', FILENAME_IMAGE_CHECKER, zen_get_all_get_params(['listType', 'listAll', 'listDisabled', 'listNoImages']), 'get', 'id="options"') ?>
@@ -347,7 +349,8 @@ require(DIR_WS_INCLUDES . 'header.php'); ?>
                     <tr class="dataTableHeadingRow">
                         <th class="center minWidth"><?= TABLE_HEADING_ID ?></th>
                         <th class="minWidth" colspan="2"><?= TABLE_HEADING_STATUS ?></th>
-                        <?php echo ($list_products ? '<th class="minWidth">' . TABLE_HEADING_MODEL . '</th>' : ''); ?>
+                        <?php
+                        echo($list_products ? '<th class="minWidth">' . TABLE_HEADING_MODEL . '</th>' : ''); ?>
                         <th><?= TABLE_HEADING_NAME ?></th>
                         <th><?= TABLE_HEADING_IMAGE ?></th>
                         <th><?= TABLE_HEADING_RESULT ?></th>
